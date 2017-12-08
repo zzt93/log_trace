@@ -3,12 +3,12 @@
 <configuration>
 
   <springProperty name="application" source="spring.application.name"/>
-  <springProperty name="profile" source="spring.profiles.active"/>
+  <springProperty name="env" source="spring.profiles.active"/>
 
   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
     <Target>System.out</Target>
     <encoder>
-      <pattern>%d %5p [${application}@${HOST_ADDRESS}] --- [%t] %-40.40c{39} : %m%n%ex</pattern>
+      <pattern>%d %5p [${application}@${env}@${HOST_ADDRESS}] --- [%t] %-40.40c{39} : %m%n%ex</pattern>
     </encoder>
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
       <level>WARN</level>
@@ -16,13 +16,13 @@
   </appender>
 
   <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <File>service@${profile}.log</File>
+    <File>service@${env}.log</File>
     <Append>true</Append>
     <encoder>
-      <pattern>%d %5p [${application}@${HOST_ADDRESS}] --- [%t] %-40.40c{39} : %m%n%ex</pattern>
+      <pattern>%d %5p [${application}@${env}@${HOST_ADDRESS}] --- [%t] %-40.40c{39} : %m%n%ex</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>service@${profile}.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <fileNamePattern>service@${env}.%d{yyyy-MM-dd}.log</fileNamePattern>
       <maxHistory>30</maxHistory>
       <totalSizeCap>6GB</totalSizeCap>
     </rollingPolicy>
