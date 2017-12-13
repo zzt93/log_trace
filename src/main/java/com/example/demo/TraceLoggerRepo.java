@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.trace.Trace;
 import org.springframework.boot.actuate.trace.TraceRepository;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TraceLoggerRepo implements TraceRepository {
 
+  private Logger logger = LoggerFactory.getLogger(TraceLoggerRepo.class);
 
   @Override
   public List<Trace> findAll() {
@@ -24,6 +27,6 @@ public class TraceLoggerRepo implements TraceRepository {
   public void add(Map<String, Object> traceInfo) {
     Trace trace = new Trace(new Date(), traceInfo);
     // write to file or db
-    System.out.println(traceInfo);
+    logger.warn("{}", trace);
   }
 }
