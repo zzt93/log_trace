@@ -22,7 +22,7 @@
       <pattern>%d %5p [${application}@${env}@${HOST_ADDRESS}] --- [%t] %-40.40c{39} : %m%n%ex</pattern>
     </encoder>
     <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>service@${env}.%d{yyyy-MM-dd}.log</fileNamePattern>
+      <fileNamePattern>/log/service@${env}.%d{yyyy-MM-dd}.log</fileNamePattern>
       <maxHistory>30</maxHistory>
       <totalSizeCap>6GB</totalSizeCap>
     </rollingPolicy>
