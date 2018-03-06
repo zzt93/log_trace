@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.example.demo.LogFilterConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.example.demo.traceId.LogFilterConfig

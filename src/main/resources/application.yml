@@ -2,6 +2,14 @@ spring.application.name: demo
 
 ---
 
+
 management:
-  trace:
-    include: REQUEST_HEADERS,RESPONSE_HEADERS,COOKIES,AUTHORIZATION_HEADER,ERRORS,PATH_INFO,PATH_TRANSLATED,CONTEXT_PATH,USER_PRINCIPAL,PARAMETERS,QUERY_STRING,AUTH_TYPE,REMOTE_ADDRESS,SESSION_ID,REMOTE_USER,TIME_TAKEN
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    prometheus:
+      enabled: true
+
+

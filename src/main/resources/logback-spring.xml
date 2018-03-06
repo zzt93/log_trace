@@ -10,9 +10,9 @@
     <encoder>
       <pattern>%d %5p %X{requestId} [${application}@${env}@${HOST_ADDRESS}] --- [%t] %-40.40c{39} : %m%n%ex</pattern>
     </encoder>
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>debug</level>
-    </filter>
+    <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+      <!--<level>debug</level>-->
+    <!--</filter>-->
   </appender>
 
   <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -29,7 +29,7 @@
 
   </appender>
 
-  <root level="debug">
+  <root level="warn">
     <appender-ref ref="info"/>
     <appender-ref ref="console"/>
   </root>

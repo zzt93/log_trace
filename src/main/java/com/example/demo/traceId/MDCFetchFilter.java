@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.traceId;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -8,13 +8,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.core.annotation.Order;
+import org.slf4j.MDC;
 
 /**
  * @author zzt
  */
-public class MDCAddFilter implements Filter {
+public class MDCFetchFilter implements Filter {
 
+
+  private static final String REQUEST_ID = "requestId";
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
@@ -23,8 +25,12 @@ public class MDCAddFilter implements Filter {
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
       FilterChain filterChain) throws IOException, ServletException {
-    filterChain
-        .doFilter(new AddRequestId((HttpServletRequest) servletRequest), servletResponse);
+    MDC.put(REQUEST_ID, ((HttpServletRequest) servletRequest).getHeader(REQUEST_ID));
+    try {
+      filterChain.doFilter(servletRequest, servletResponse);
+    } finally {
+      MDC.remove(REQUEST_ID);
+    }
   }
 
   @Override
