@@ -1,0 +1,20 @@
+spring.application.name: monitor
+
+---
+
+
+endpoints.enabled: true
+endpoints.sensitive: false
+management.security.enabled: false
+
+management:
+  metrics:
+    distribution:
+      percentiles-histogram:
+#        "jvm": true
+        "http": true
+#      sla:
+    web:
+      server:
+        auto-time-requests: true
+#    enable: false

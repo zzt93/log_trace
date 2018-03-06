@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.github.zzt93.metric;
 
 import java.util.Collections;
 import java.util.Date;
@@ -18,6 +18,7 @@ public class TraceLoggerRepo implements TraceRepository {
 
   private Logger logger = LoggerFactory.getLogger(TraceLoggerRepo.class);
 
+
   @Override
   public List<Trace> findAll() {
     return Collections.emptyList();
@@ -26,7 +27,8 @@ public class TraceLoggerRepo implements TraceRepository {
   @Override
   public void add(Map<String, Object> traceInfo) {
     Trace trace = new Trace(new Date(), traceInfo);
-    // write to file or db
-    logger.warn("{}", trace);
+//    counterService.increment("counter.trace");
+//    gaugeService.submit("", );
+    logger.warn("{}", traceInfo);
   }
 }
